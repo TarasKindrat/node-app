@@ -1,0 +1,8 @@
+#!/bin/sh
+ssh taras@192.168.56.11 <<EOF
+ cd ~/node-app
+ git pull
+ npm install — production
+ pm2 restart all
+ exit
+EOF
