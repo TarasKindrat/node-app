@@ -1,0 +1,295 @@
+Started by an SCM change
+Obtained jenkins_node.jenkinsfile from git https://github.com/TarasKindrat/my_task.git
+Running in Durability level: MAX_SURVIVABILITY
+[Pipeline] Start of Pipeline
+[Pipeline] properties
+[Pipeline] node
+Running on Jenkins in /var/lib/jenkins/workspace/node_app
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Declarative: Checkout SCM)
+[Pipeline] checkout
+Selected Git installation does not exist. Using Default
+The recommended git tool is: NONE
+No credentials specified
+ > git rev-parse --is-inside-work-tree # timeout=10
+Fetching changes from the remote Git repository
+ > git config remote.origin.url https://github.com/TarasKindrat/my_task.git # timeout=10
+Fetching upstream changes from https://github.com/TarasKindrat/my_task.git
+ > git --version # timeout=10
+ > git --version # 'git version 2.25.1'
+ > git fetch --tags --force --progress -- https://github.com/TarasKindrat/my_task.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git rev-parse refs/remotes/origin/master^{commit} # timeout=10
+Checking out Revision b7afad73628da7cd6e4923f529e7cc9b0ee01d08 (refs/remotes/origin/master)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f b7afad73628da7cd6e4923f529e7cc9b0ee01d08 # timeout=10
+Commit message: "Update jenkins_node.jenkinsfile"
+ > git rev-list --no-walk ca35b46c5a1e5633b0724f0f7d77514884ef21b6 # timeout=10
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] timestamps
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Get code from git)
+[Pipeline] git
+[2021-03-31T20:35:32.556Z] The recommended git tool is: NONE
+[2021-03-31T20:35:32.557Z] No credentials specified
+[2021-03-31T20:35:32.557Z]  > git rev-parse --is-inside-work-tree # timeout=10
+[2021-03-31T20:35:32.572Z] Fetching changes from the remote Git repository
+[2021-03-31T20:35:32.572Z]  > git config remote.origin.url https://github.com/TarasKindrat/node-application.git # timeout=10
+[2021-03-31T20:35:32.585Z] Fetching upstream changes from https://github.com/TarasKindrat/node-application.git
+[2021-03-31T20:35:32.585Z]  > git --version # timeout=10
+[2021-03-31T20:35:32.592Z]  > git --version # 'git version 2.25.1'
+[2021-03-31T20:35:32.592Z]  > git fetch --tags --force --progress -- https://github.com/TarasKindrat/node-application.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+[2021-03-31T20:35:33.135Z]  > git rev-parse refs/remotes/origin/master^{commit} # timeout=10
+[2021-03-31T20:35:33.139Z] Checking out Revision 3aef71214354ef0a63e2f46a1fa16f52ce2728ed (refs/remotes/origin/master)
+[2021-03-31T20:35:33.139Z]  > git config core.sparsecheckout # timeout=10
+[2021-03-31T20:35:33.144Z]  > git checkout -f 3aef71214354ef0a63e2f46a1fa16f52ce2728ed # timeout=10
+[2021-03-31T20:35:33.221Z]  > git branch -a -v --no-abbrev # timeout=10
+[2021-03-31T20:35:33.228Z]  > git branch -D master # timeout=10
+[2021-03-31T20:35:33.236Z]  > git checkout -b master 3aef71214354ef0a63e2f46a1fa16f52ce2728ed # timeout=10
+[2021-03-31T20:35:33.323Z] Commit message: "Update test.js"
+[2021-03-31T20:35:33.323Z]  > git rev-list --no-walk 3aef71214354ef0a63e2f46a1fa16f52ce2728ed # timeout=10
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Run test)
+[Pipeline] sh
+[2021-03-31T20:35:33.732Z] + npm install
+[2021-03-31T20:35:41.775Z] audited 108 packages in 3.668s
+[2021-03-31T20:35:41.775Z] found 61 vulnerabilities (17 low, 20 moderate, 23 high, 1 critical)
+[2021-03-31T20:35:41.775Z]   run `npm audit fix` to fix them, or `npm audit` for details
+[Pipeline] sh
+[2021-03-31T20:35:42.069Z] + chmod +x script/test.sh
+[Pipeline] sh
+[2021-03-31T20:35:42.361Z] + script/test.sh
+[2021-03-31T20:35:43.276Z] (node:792530) [DEP0006] DeprecationWarning: child_process: options.customFds option is deprecated. Use options.stdio instead.
+[2021-03-31T20:35:45.140Z] 
+[2021-03-31T20:35:45.140Z]   [33m․[0m
+[2021-03-31T20:35:45.141Z] 
+[2021-03-31T20:35:45.141Z] [92m [0m[32m 1 passing[0m[90m (58ms)[0m
+[2021-03-31T20:35:45.141Z] 
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Deploy)
+[Pipeline] echo
+[2021-03-31T20:35:45.277Z] download and execute the NodeSource installation script
+[Pipeline] sh
+[2021-03-31T20:35:45.552Z] + ssh root@192.168.56.11 apt -y install curl
+[2021-03-31T20:35:46.897Z] 
+[2021-03-31T20:35:46.897Z] WARNING: apt does not have a stable CLI interface. Use with caution in scripts.
+[2021-03-31T20:35:46.897Z] 
+[2021-03-31T20:35:46.897Z] Reading package lists...
+[2021-03-31T20:35:47.456Z] Building dependency tree...
+[2021-03-31T20:35:47.456Z] Reading state information...
+[2021-03-31T20:35:48.009Z] The following additional packages will be installed:
+[2021-03-31T20:35:48.009Z]   libcurl4
+[2021-03-31T20:35:48.009Z] The following packages will be upgraded:
+[2021-03-31T20:35:48.260Z]   curl libcurl4
+[2021-03-31T20:35:48.260Z] 2 upgraded, 0 newly installed, 0 to remove and 65 not upgraded.
+[2021-03-31T20:35:48.260Z] Need to get 395 kB of archives.
+[2021-03-31T20:35:48.260Z] After this operation, 0 B of additional disk space will be used.
+[2021-03-31T20:35:48.260Z] Get:1 http://ua.archive.ubuntu.com/ubuntu focal-updates/main amd64 curl amd64 7.68.0-1ubuntu2.5 [161 kB]
+[2021-03-31T20:35:48.812Z] Get:2 http://ua.archive.ubuntu.com/ubuntu focal-updates/main amd64 libcurl4 amd64 7.68.0-1ubuntu2.5 [234 kB]
+[2021-03-31T20:35:49.724Z] debconf: unable to initialize frontend: Dialog
+[2021-03-31T20:35:49.724Z] debconf: (TERM is not set, so the dialog frontend is not usable.)
+[2021-03-31T20:35:49.724Z] debconf: falling back to frontend: Readline
+[2021-03-31T20:35:49.724Z] debconf: unable to initialize frontend: Readline
+[2021-03-31T20:35:49.724Z] debconf: (This frontend requires a controlling tty.)
+[2021-03-31T20:35:49.724Z] debconf: falling back to frontend: Teletype
+[2021-03-31T20:35:49.724Z] dpkg-preconfigure: unable to re-open stdin: 
+[2021-03-31T20:35:49.979Z] Fetched 395 kB in 1s (470 kB/s)
+[2021-03-31T20:35:49.979Z] (Reading database ... 
+(Reading database ... 5%
+(Reading database ... 10%
+(Reading database ... 15%
+(Reading database ... 20%
+(Reading database ... 25%
+(Reading database ... 30%
+(Reading database ... 35%
+(Reading database ... 40%
+(Reading database ... 45%
+(Reading database ... 50%
+(Reading database ... 55%
+(Reading database ... 60%
+(Reading database ... 65%
+(Reading database ... 70%
+(Reading database ... 75%
+(Reading database ... 80%
+(Reading database ... 85%
+(Reading database ... 90%
+(Reading database ... 95%
+(Reading database ... 100%
+(Reading database ... 192362 files and directories currently installed.)
+[2021-03-31T20:35:49.979Z] Preparing to unpack .../curl_7.68.0-1ubuntu2.5_amd64.deb ...
+[2021-03-31T20:35:50.258Z] Unpacking curl (7.68.0-1ubuntu2.5) over (7.68.0-1ubuntu2.4) ...
+[2021-03-31T20:35:50.258Z] Preparing to unpack .../libcurl4_7.68.0-1ubuntu2.5_amd64.deb ...
+[2021-03-31T20:35:50.258Z] Unpacking libcurl4:amd64 (7.68.0-1ubuntu2.5) over (7.68.0-1ubuntu2.4) ...
+[2021-03-31T20:35:50.508Z] Setting up libcurl4:amd64 (7.68.0-1ubuntu2.5) ...
+[2021-03-31T20:35:50.508Z] Setting up curl (7.68.0-1ubuntu2.5) ...
+[2021-03-31T20:35:50.508Z] Processing triggers for man-db (2.9.1-1) ...
+[2021-03-31T20:35:52.994Z] Processing triggers for libc-bin (2.31-0ubuntu9.2) ...
+[Pipeline] sh
+[2021-03-31T20:36:01.303Z] + ssh root@192.168.56.11 curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash -
+[2021-03-31T20:36:02.648Z] 
+[2021-03-31T20:36:02.648Z] ## Installing the NodeSource Node.js 14.x repo...
+[2021-03-31T20:36:02.648Z] 
+[2021-03-31T20:36:02.648Z] 
+[2021-03-31T20:36:02.648Z] ## Populating apt-get cache...
+[2021-03-31T20:36:02.648Z] 
+[2021-03-31T20:36:02.648Z] + apt-get update
+[2021-03-31T20:36:02.899Z] Hit:1 http://ua.archive.ubuntu.com/ubuntu focal InRelease
+[2021-03-31T20:36:02.899Z] Hit:2 http://ua.archive.ubuntu.com/ubuntu focal-updates InRelease
+[2021-03-31T20:36:02.899Z] Hit:3 http://security.ubuntu.com/ubuntu focal-security InRelease
+[2021-03-31T20:36:02.899Z] Hit:4 http://ua.archive.ubuntu.com/ubuntu focal-backports InRelease
+[2021-03-31T20:36:02.899Z] Hit:5 https://deb.nodesource.com/node_14.x focal InRelease
+[2021-03-31T20:36:06.731Z] Reading package lists...
+[2021-03-31T20:36:06.731Z] 
+[2021-03-31T20:36:06.731Z] ## Confirming "focal" is supported...
+[2021-03-31T20:36:06.731Z] 
+[2021-03-31T20:36:06.731Z] + curl -sLf -o /dev/null 'https://deb.nodesource.com/node_14.x/dists/focal/Release'
+[2021-03-31T20:36:06.731Z] 
+[2021-03-31T20:36:06.731Z] ## Adding the NodeSource signing key to your keyring...
+[2021-03-31T20:36:06.731Z] 
+[2021-03-31T20:36:06.731Z] + curl -s https://deb.nodesource.com/gpgkey/nodesource.gpg.key | gpg --dearmor | tee /usr/share/keyrings/nodesource.gpg >/dev/null
+[2021-03-31T20:36:06.982Z] 
+[2021-03-31T20:36:06.982Z] ## Creating apt sources list file for the NodeSource Node.js 14.x repo...
+[2021-03-31T20:36:06.982Z] 
+[2021-03-31T20:36:06.982Z] + echo 'deb [signed-by=/usr/share/keyrings/nodesource.gpg] https://deb.nodesource.com/node_14.x focal main' > /etc/apt/sources.list.d/nodesource.list
+[2021-03-31T20:36:06.982Z] + echo 'deb-src [signed-by=/usr/share/keyrings/nodesource.gpg] https://deb.nodesource.com/node_14.x focal main' >> /etc/apt/sources.list.d/nodesource.list
+[2021-03-31T20:36:06.982Z] 
+[2021-03-31T20:36:06.982Z] ## Running `apt-get update` for you...
+[2021-03-31T20:36:06.982Z] 
+[2021-03-31T20:36:06.982Z] + apt-get update
+[2021-03-31T20:36:07.232Z] Hit:1 http://ua.archive.ubuntu.com/ubuntu focal InRelease
+[2021-03-31T20:36:07.233Z] Hit:2 http://ua.archive.ubuntu.com/ubuntu focal-updates InRelease
+[2021-03-31T20:36:07.233Z] Hit:3 http://ua.archive.ubuntu.com/ubuntu focal-backports InRelease
+[2021-03-31T20:36:07.483Z] Hit:4 http://security.ubuntu.com/ubuntu focal-security InRelease
+[2021-03-31T20:36:07.483Z] Hit:5 https://deb.nodesource.com/node_14.x focal InRelease
+[2021-03-31T20:36:10.880Z] Reading package lists...
+[2021-03-31T20:36:10.880Z] 
+[2021-03-31T20:36:10.880Z] ## Run `sudo apt-get install -y nodejs` to install Node.js 14.x and npm
+[2021-03-31T20:36:10.880Z] ## You may also need development tools to build native addons:
+[2021-03-31T20:36:10.880Z]      sudo apt-get install gcc g++ make
+[2021-03-31T20:36:10.880Z] ## To install the Yarn package manager, run:
+[2021-03-31T20:36:10.880Z]      curl -sL https://dl.yarnpkg.com/debian/pubkey.gpg | gpg --dearmor | sudo tee /usr/share/keyrings/yarnkey.gpg >/dev/null
+[2021-03-31T20:36:10.880Z]      echo "deb [signed-by=/usr/share/keyrings/yarnkey.gpg] https://dl.yarnpkg.com/debian stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+[2021-03-31T20:36:10.880Z]      sudo apt-get update && sudo apt-get install yarn
+[2021-03-31T20:36:10.880Z] 
+[2021-03-31T20:36:10.880Z] 
+[Pipeline] echo
+[2021-03-31T20:36:10.904Z] Install node special version
+[Pipeline] sh
+[2021-03-31T20:36:11.188Z] + ssh root@192.168.56.11 apt -y install nodejs
+[2021-03-31T20:36:11.739Z] 
+[2021-03-31T20:36:11.739Z] WARNING: apt does not have a stable CLI interface. Use with caution in scripts.
+[2021-03-31T20:36:11.739Z] 
+[2021-03-31T20:36:11.990Z] Reading package lists...
+[2021-03-31T20:36:12.242Z] Building dependency tree...
+[2021-03-31T20:36:12.242Z] Reading state information...
+[2021-03-31T20:36:13.154Z] nodejs is already the newest version (14.16.0-deb-1nodesource1).
+[2021-03-31T20:36:13.154Z] 0 upgraded, 0 newly installed, 0 to remove and 65 not upgraded.
+[Pipeline] echo
+[2021-03-31T20:36:13.187Z] Check version: 
+[Pipeline] sh
+[2021-03-31T20:36:13.457Z] + ssh root@192.168.56.11 node --version; npm --version
+[2021-03-31T20:36:14.010Z] v14.16.0
+[2021-03-31T20:36:14.562Z] 6.14.11
+[Pipeline] sh
+[2021-03-31T20:36:14.854Z] + ssh root@192.168.56.11 if [ -d node-application ]; then sudo rm -R node-application; fi
+[Pipeline] sh
+[2021-03-31T20:36:16.055Z] + ssh root@192.168.56.11 git clone https://github.com/TarasKindrat/node-application.git
+[2021-03-31T20:36:16.967Z] Cloning into 'node-application'...
+[Pipeline] sh
+[2021-03-31T20:36:18.596Z] + ssh root@192.168.56.11 cd node-application; pwd; ls;npm install
+[2021-03-31T20:36:19.148Z] /root/node-application
+[2021-03-31T20:36:19.148Z] index.js
+[2021-03-31T20:36:19.148Z] package.json
+[2021-03-31T20:36:19.148Z] package-lock.json
+[2021-03-31T20:36:19.148Z] README.md
+[2021-03-31T20:36:19.148Z] script
+[2021-03-31T20:36:19.148Z] test
+[2021-03-31T20:36:27.177Z] added 108 packages from 50 contributors and audited 108 packages in 6.517s
+[2021-03-31T20:36:27.177Z] found 61 vulnerabilities (17 low, 20 moderate, 23 high, 1 critical)
+[2021-03-31T20:36:27.177Z]   run `npm audit fix` to fix them, or `npm audit` for details
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Run)
+[Pipeline] echo
+[2021-03-31T20:36:27.336Z] Install pm2
+[Pipeline] sh
+[2021-03-31T20:36:27.603Z] + ssh root@192.168.56.11 npm install pm2@latest -g
+[2021-03-31T20:36:37.483Z] npm WARN deprecated debug@4.1.1: Debug versions >=3.2.0 <3.2.7 || >=4 <4.3.1 have a low-severity ReDos regression when used in a Node.js environment. It is recommended you upgrade to 3.2.7 or 4.3.1. (https://github.com/visionmedia/debug/issues/797)
+[2021-03-31T20:37:09.420Z] /usr/bin/pm2 -> /usr/lib/node_modules/pm2/bin/pm2
+[2021-03-31T20:37:09.420Z] /usr/bin/pm2-dev -> /usr/lib/node_modules/pm2/bin/pm2-dev
+[2021-03-31T20:37:09.420Z] /usr/bin/pm2-docker -> /usr/lib/node_modules/pm2/bin/pm2-docker
+[2021-03-31T20:37:09.420Z] /usr/bin/pm2-runtime -> /usr/lib/node_modules/pm2/bin/pm2-runtime
+[2021-03-31T20:37:09.420Z] npm WARN optional SKIPPING OPTIONAL DEPENDENCY: fsevents@~2.3.1 (node_modules/pm2/node_modules/chokidar/node_modules/fsevents):
+[2021-03-31T20:37:09.420Z] npm WARN notsup SKIPPING OPTIONAL DEPENDENCY: Unsupported platform for fsevents@2.3.2: wanted {"os":"darwin","arch":"any"} (current: {"os":"linux","arch":"x64"})
+[2021-03-31T20:37:09.420Z] 
+[2021-03-31T20:37:09.420Z] + pm2@4.5.5
+[2021-03-31T20:37:09.420Z] added 201 packages from 196 contributors in 37.585s
+[Pipeline] echo
+[2021-03-31T20:37:09.442Z] run application
+[Pipeline] sh
+[2021-03-31T20:37:09.710Z] + ssh root@192.168.56.11 cd node-application; pm2 start index.js
+[2021-03-31T20:37:11.056Z] 
+[2021-03-31T20:37:11.056Z]                         -------------
+[2021-03-31T20:37:11.056Z] 
+[2021-03-31T20:37:11.056Z] __/\\\\\\\\\\\\\____/\\\\____________/\\\\____/\\\\\\\\\_____
+[2021-03-31T20:37:11.056Z]  _\/\\\/////////\\\_\/\\\\\\________/\\\\\\__/\\\///////\\\___
+[2021-03-31T20:37:11.056Z]   _\/\\\_______\/\\\_\/\\\//\\\____/\\\//\\\_\///______\//\\\__
+[2021-03-31T20:37:11.056Z]    _\/\\\\\\\\\\\\\/__\/\\\\///\\\/\\\/_\/\\\___________/\\\/___
+[2021-03-31T20:37:11.056Z]     _\/\\\/////////____\/\\\__\///\\\/___\/\\\________/\\\//_____
+[2021-03-31T20:37:11.056Z]      _\/\\\_____________\/\\\____\///_____\/\\\_____/\\\//________
+[2021-03-31T20:37:11.056Z]       _\/\\\_____________\/\\\_____________\/\\\___/\\\/___________
+[2021-03-31T20:37:11.056Z]        _\/\\\_____________\/\\\_____________\/\\\__/\\\\\\\\\\\\\\\_
+[2021-03-31T20:37:11.056Z]         _\///______________\///______________\///__\///////////////__
+[2021-03-31T20:37:11.056Z] 
+[2021-03-31T20:37:11.056Z] 
+[2021-03-31T20:37:11.056Z]                           Runtime Edition
+[2021-03-31T20:37:11.056Z] 
+[2021-03-31T20:37:11.056Z]         PM2 is a Production Process Manager for Node.js applications
+[2021-03-31T20:37:11.056Z]                      with a built-in Load Balancer.
+[2021-03-31T20:37:11.056Z] 
+[2021-03-31T20:37:11.056Z]                 Start and Daemonize any application:
+[2021-03-31T20:37:11.056Z]                 $ pm2 start app.js
+[2021-03-31T20:37:11.056Z] 
+[2021-03-31T20:37:11.056Z]                 Load Balance 4 instances of api.js:
+[2021-03-31T20:37:11.056Z]                 $ pm2 start api.js -i 4
+[2021-03-31T20:37:11.056Z] 
+[2021-03-31T20:37:11.056Z]                 Monitor in production:
+[2021-03-31T20:37:11.056Z]                 $ pm2 monitor
+[2021-03-31T20:37:11.056Z] 
+[2021-03-31T20:37:11.056Z]                 Make pm2 auto-boot at server restart:
+[2021-03-31T20:37:11.056Z]                 $ pm2 startup
+[2021-03-31T20:37:11.056Z] 
+[2021-03-31T20:37:11.056Z]                 To go further checkout:
+[2021-03-31T20:37:11.056Z]                 http://pm2.io/
+[2021-03-31T20:37:11.056Z] 
+[2021-03-31T20:37:11.056Z] 
+[2021-03-31T20:37:11.056Z]                         -------------
+[2021-03-31T20:37:11.056Z] 
+[2021-03-31T20:37:11.057Z] [PM2] Spawning PM2 daemon with pm2_home=/root/.pm2
+[2021-03-31T20:37:11.608Z] [PM2] PM2 Successfully daemonized
+[2021-03-31T20:37:11.859Z] [PM2] Starting /root/node-application/index.js in fork_mode (1 instance)
+[2021-03-31T20:37:11.859Z] [PM2] Done.
+[2021-03-31T20:37:12.111Z] ┌─────┬──────────┬─────────────┬─────────┬─────────┬──────────┬────────┬──────┬───────────┬──────────┬──────────┬──────────┬──────────┐
+[2021-03-31T20:37:12.111Z] │ id  │ name     │ namespace   │ version │ mode    │ pid      │ uptime │ ↺    │ status    │ cpu      │ mem      │ user     │ watching │
+[2021-03-31T20:37:12.111Z] ├─────┼──────────┼─────────────┼─────────┼─────────┼──────────┼────────┼──────┼───────────┼──────────┼──────────┼──────────┼──────────┤
+[2021-03-31T20:37:12.111Z] │ 0   │ index    │ default     │ 0.0.1   │ fork    │ 23574    │ 0s     │ 0    │ online    │ 0%       │ 31.1mb   │ root     │ disabled │
+[2021-03-31T20:37:12.111Z] └─────┴──────────┴─────────────┴─────────┴─────────┴──────────┴────────┴──────┴───────────┴──────────┴──────────┴──────────┴──────────┘
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] }
+[Pipeline] // timestamps
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // node
+[Pipeline] End of Pipeline
+Finished: SUCCESS
