@@ -1,0 +1,92 @@
+Started by user Taras
+Obtained jenkins_node.jenkinsfile from git https://github.com/TarasKindrat/my_task.git
+Running in Durability level: MAX_SURVIVABILITY
+[Pipeline] Start of Pipeline
+[Pipeline] properties
+[Pipeline] node
+Running on Jenkins in /var/lib/jenkins/workspace/node_app
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Declarative: Checkout SCM)
+[Pipeline] checkout
+Selected Git installation does not exist. Using Default
+The recommended git tool is: NONE
+No credentials specified
+ > git rev-parse --is-inside-work-tree # timeout=10
+Fetching changes from the remote Git repository
+ > git config remote.origin.url https://github.com/TarasKindrat/my_task.git # timeout=10
+Fetching upstream changes from https://github.com/TarasKindrat/my_task.git
+ > git --version # timeout=10
+ > git --version # 'git version 2.25.1'
+ > git fetch --tags --force --progress -- https://github.com/TarasKindrat/my_task.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git rev-parse refs/remotes/origin/master^{commit} # timeout=10
+Checking out Revision e6ef19b10807f92fcdf7b93d8d6af82bcd4f85a3 (refs/remotes/origin/master)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f e6ef19b10807f92fcdf7b93d8d6af82bcd4f85a3 # timeout=10
+Commit message: "Update jenkins_node_deploy.jenkinsfile"
+ > git rev-list --no-walk 604c63019e465ad98acfddbe7f085eb6f58e55a8 # timeout=10
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] timestamps
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Get code from git)
+[Pipeline] git
+14:38:41  The recommended git tool is: NONE
+14:38:41  No credentials specified
+14:38:41   > git rev-parse --is-inside-work-tree # timeout=10
+14:38:41  Fetching changes from the remote Git repository
+14:38:41   > git config remote.origin.url https://github.com/TarasKindrat/node-application.git # timeout=10
+14:38:41  Fetching upstream changes from https://github.com/TarasKindrat/node-application.git
+14:38:41   > git --version # timeout=10
+14:38:41   > git --version # 'git version 2.25.1'
+14:38:41   > git fetch --tags --force --progress -- https://github.com/TarasKindrat/node-application.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+14:38:41   > git rev-parse refs/remotes/origin/master^{commit} # timeout=10
+14:38:41  Checking out Revision b11d2e6a2909538d449e2a242e74b9f3b73de8f1 (refs/remotes/origin/master)
+14:38:41   > git config core.sparsecheckout # timeout=10
+14:38:41   > git checkout -f b11d2e6a2909538d449e2a242e74b9f3b73de8f1 # timeout=10
+14:38:42   > git branch -a -v --no-abbrev # timeout=10
+14:38:42   > git branch -D master # timeout=10
+14:38:42   > git checkout -b master b11d2e6a2909538d449e2a242e74b9f3b73de8f1 # timeout=10
+14:38:42  Commit message: "Create jenkins_log"
+14:38:42   > git rev-list --no-walk b11d2e6a2909538d449e2a242e74b9f3b73de8f1 # timeout=10
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Run test)
+[Pipeline] sh
+14:38:42  + npm install
+14:38:44  audited 108 packages in 1.098s
+14:38:44  found 61 vulnerabilities (17 low, 20 moderate, 23 high, 1 critical)
+14:38:44    run `npm audit fix` to fix them, or `npm audit` for details
+[Pipeline] sh
+14:38:44  + chmod +x script/test.sh
+[Pipeline] sh
+14:38:44  + script/test.sh
+14:38:45  (node:149120) [DEP0006] DeprecationWarning: child_process: options.customFds option is deprecated. Use options.stdio instead.
+14:38:45  
+14:38:45    [90m․[0m
+14:38:45  
+14:38:45  [92m [0m[32m 1 passing[0m[90m (17ms)[0m
+14:38:45  
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Declarative: Post Actions)
+[Pipeline] echo
+14:38:45  Run node_app_deploy pipeline!
+[Pipeline] build (Building node_app_deploy)
+14:38:45  Scheduling project: node_app_deploy
+14:38:55  Starting building: node_app_deploy #24
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] }
+[Pipeline] // timestamps
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // node
+[Pipeline] End of Pipeline
+Finished: SUCCESS
