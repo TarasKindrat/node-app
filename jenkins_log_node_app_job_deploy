@@ -1,0 +1,202 @@
+Started by upstream project "node_app" build number 86
+originally caused by:
+ Started by user Taras
+Obtained jenkins_node_deploy.jenkinsfile from git https://github.com/TarasKindrat/my_task.git
+Running in Durability level: MAX_SURVIVABILITY
+[Pipeline] Start of Pipeline
+[Pipeline] properties
+[Pipeline] node
+Running on Jenkins in /var/lib/jenkins/workspace/node_app_deploy
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Declarative: Checkout SCM)
+[Pipeline] checkout
+Selected Git installation does not exist. Using Default
+The recommended git tool is: NONE
+No credentials specified
+ > git rev-parse --is-inside-work-tree # timeout=10
+Fetching changes from the remote Git repository
+ > git config remote.origin.url https://github.com/TarasKindrat/my_task.git # timeout=10
+Fetching upstream changes from https://github.com/TarasKindrat/my_task.git
+ > git --version # timeout=10
+ > git --version # 'git version 2.25.1'
+ > git fetch --tags --force --progress -- https://github.com/TarasKindrat/my_task.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git rev-parse refs/remotes/origin/master^{commit} # timeout=10
+Checking out Revision e6ef19b10807f92fcdf7b93d8d6af82bcd4f85a3 (refs/remotes/origin/master)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f e6ef19b10807f92fcdf7b93d8d6af82bcd4f85a3 # timeout=10
+Commit message: "Update jenkins_node_deploy.jenkinsfile"
+ > git rev-list --no-walk 604c63019e465ad98acfddbe7f085eb6f58e55a8 # timeout=10
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] timestamps
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Deploy)
+[Pipeline] echo
+14:38:57  download and execute the NodeSource installation script
+[Pipeline] sh
+14:38:57  + ssh root@192.168.56.11 apt -y install curl
+14:38:57  
+14:38:57  WARNING: apt does not have a stable CLI interface. Use with caution in scripts.
+14:38:57  
+14:38:57  Reading package lists...
+14:38:57  Building dependency tree...
+14:38:57  Reading state information...
+14:38:58  curl is already the newest version (7.68.0-1ubuntu2.5).
+14:38:58  0 upgraded, 0 newly installed, 0 to remove and 54 not upgraded.
+[Pipeline] sh
+14:38:58  + ssh root@192.168.56.11 curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash -
+14:38:58  
+14:38:58  ## Installing the NodeSource Node.js 14.x repo...
+14:38:58  
+14:38:58  
+14:38:58  ## Populating apt-get cache...
+14:38:58  
+14:38:58  + apt-get update
+14:38:58  Hit:1 http://ua.archive.ubuntu.com/ubuntu focal InRelease
+14:38:58  Get:2 http://ua.archive.ubuntu.com/ubuntu focal-updates InRelease [114 kB]
+14:38:58  Hit:3 https://deb.nodesource.com/node_14.x focal InRelease
+14:38:58  Get:4 http://ua.archive.ubuntu.com/ubuntu focal-backports InRelease [101 kB]
+14:38:59  Get:5 http://security.ubuntu.com/ubuntu focal-security InRelease [109 kB]
+14:38:59  Get:6 http://ua.archive.ubuntu.com/ubuntu focal-updates/main amd64 Packages [896 kB]
+14:38:59  Get:7 http://ua.archive.ubuntu.com/ubuntu focal-updates/main i386 Packages [449 kB]
+14:38:59  Get:8 http://ua.archive.ubuntu.com/ubuntu focal-updates/main Translation-en [209 kB]
+14:38:59  Get:9 http://ua.archive.ubuntu.com/ubuntu focal-updates/main amd64 DEP-11 Metadata [264 kB]
+14:38:59  Get:10 http://ua.archive.ubuntu.com/ubuntu focal-updates/universe amd64 Packages [758 kB]
+14:38:59  Get:11 http://security.ubuntu.com/ubuntu focal-security/main amd64 DEP-11 Metadata [24,3 kB]
+14:38:59  Get:12 http://ua.archive.ubuntu.com/ubuntu focal-updates/universe i386 Packages [561 kB]
+14:39:00  Get:13 http://ua.archive.ubuntu.com/ubuntu focal-updates/universe Translation-en [161 kB]
+14:39:00  Get:14 http://ua.archive.ubuntu.com/ubuntu focal-updates/universe amd64 DEP-11 Metadata [303 kB]
+14:39:00  Get:15 http://security.ubuntu.com/ubuntu focal-security/universe amd64 DEP-11 Metadata [58,1 kB]
+14:39:00  Get:16 http://ua.archive.ubuntu.com/ubuntu focal-updates/universe DEP-11 48x48 Icons [198 kB]
+14:39:00  Get:17 http://ua.archive.ubuntu.com/ubuntu focal-updates/multiverse amd64 DEP-11 Metadata [2 468 B]
+14:39:00  Get:18 http://ua.archive.ubuntu.com/ubuntu focal-backports/universe amd64 DEP-11 Metadata [1 768 B]
+14:39:05  Fetched 4 210 kB in 2s (2 462 kB/s)
+14:39:06  Reading package lists...
+14:39:06  
+14:39:06  ## Confirming "focal" is supported...
+14:39:06  
+14:39:06  + curl -sLf -o /dev/null 'https://deb.nodesource.com/node_14.x/dists/focal/Release'
+14:39:07  
+14:39:07  ## Adding the NodeSource signing key to your keyring...
+14:39:07  
+14:39:07  + curl -s https://deb.nodesource.com/gpgkey/nodesource.gpg.key | gpg --dearmor | tee /usr/share/keyrings/nodesource.gpg >/dev/null
+14:39:07  
+14:39:07  ## Creating apt sources list file for the NodeSource Node.js 14.x repo...
+14:39:07  
+14:39:07  + echo 'deb [signed-by=/usr/share/keyrings/nodesource.gpg] https://deb.nodesource.com/node_14.x focal main' > /etc/apt/sources.list.d/nodesource.list
+14:39:07  + echo 'deb-src [signed-by=/usr/share/keyrings/nodesource.gpg] https://deb.nodesource.com/node_14.x focal main' >> /etc/apt/sources.list.d/nodesource.list
+14:39:07  
+14:39:07  ## Running `apt-get update` for you...
+14:39:07  
+14:39:07  + apt-get update
+14:39:07  Hit:1 http://ua.archive.ubuntu.com/ubuntu focal InRelease
+14:39:07  Hit:2 http://ua.archive.ubuntu.com/ubuntu focal-updates InRelease
+14:39:07  Hit:3 http://ua.archive.ubuntu.com/ubuntu focal-backports InRelease
+14:39:07  Hit:4 https://deb.nodesource.com/node_14.x focal InRelease
+14:39:07  Hit:5 http://security.ubuntu.com/ubuntu focal-security InRelease
+14:39:09  Reading package lists...
+14:39:09  
+14:39:09  ## Run `sudo apt-get install -y nodejs` to install Node.js 14.x and npm
+14:39:09  ## You may also need development tools to build native addons:
+14:39:09       sudo apt-get install gcc g++ make
+14:39:09  ## To install the Yarn package manager, run:
+14:39:09       curl -sL https://dl.yarnpkg.com/debian/pubkey.gpg | gpg --dearmor | sudo tee /usr/share/keyrings/yarnkey.gpg >/dev/null
+14:39:09       echo "deb [signed-by=/usr/share/keyrings/yarnkey.gpg] https://dl.yarnpkg.com/debian stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+14:39:09       sudo apt-get update && sudo apt-get install yarn
+14:39:09  
+14:39:09  
+[Pipeline] echo
+14:39:09  Install node special version
+[Pipeline] sh
+14:39:09  + ssh root@192.168.56.11 apt -y install nodejs
+14:39:09  
+14:39:09  WARNING: apt does not have a stable CLI interface. Use with caution in scripts.
+14:39:09  
+14:39:09  Reading package lists...
+14:39:09  Building dependency tree...
+14:39:09  Reading state information...
+14:39:10  nodejs is already the newest version (14.16.1-deb-1nodesource1).
+14:39:10  0 upgraded, 0 newly installed, 0 to remove and 54 not upgraded.
+[Pipeline] echo
+14:39:10  Check version: 
+[Pipeline] sh
+14:39:10  + ssh root@192.168.56.11 node --version; npm --version
+14:39:10  v14.16.1
+14:39:10  6.14.12
+[Pipeline] sh
+14:39:10  + ssh root@192.168.56.11 if [ -d node-application ]; then sudo rm -R node-application; fi
+[Pipeline] sh
+14:39:11  + ssh root@192.168.56.11 git clone https://github.com/TarasKindrat/node-application.git
+14:39:11  Cloning into 'node-application'...
+[Pipeline] sh
+14:39:12  + ssh root@192.168.56.11 cd node-application; pwd; ls;npm install
+14:39:12  /root/node-application
+14:39:12  index.js
+14:39:12  jenkins_log
+14:39:12  package.json
+14:39:12  package-lock.json
+14:39:12  README.md
+14:39:12  script
+14:39:12  test
+14:39:14  added 108 packages from 50 contributors and audited 108 packages in 1.615s
+14:39:14  found 61 vulnerabilities (17 low, 20 moderate, 23 high, 1 critical)
+14:39:14    run `npm audit fix` to fix them, or `npm audit` for details
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Run)
+[Pipeline] echo
+14:39:14  Install pm2
+[Pipeline] sh
+14:39:14  + ssh root@192.168.56.11 npm install pm2@latest -g
+14:39:22  /usr/bin/pm2 -> /usr/lib/node_modules/pm2/bin/pm2
+14:39:22  /usr/bin/pm2-dev -> /usr/lib/node_modules/pm2/bin/pm2-dev
+14:39:22  /usr/bin/pm2-docker -> /usr/lib/node_modules/pm2/bin/pm2-docker
+14:39:22  /usr/bin/pm2-runtime -> /usr/lib/node_modules/pm2/bin/pm2-runtime
+14:39:22  npm WARN optional SKIPPING OPTIONAL DEPENDENCY: fsevents@~2.3.1 (node_modules/pm2/node_modules/chokidar/node_modules/fsevents):
+14:39:22  npm WARN notsup SKIPPING OPTIONAL DEPENDENCY: Unsupported platform for fsevents@2.3.2: wanted {"os":"darwin","arch":"any"} (current: {"os":"linux","arch":"x64"})
+14:39:22  
+14:39:22  + pm2@4.5.6
+14:39:22  updated 1 package in 6.551s
+[Pipeline] echo
+14:39:22  run application
+[Pipeline] sh
+14:39:22  + ssh root@192.168.56.11 cd node-application; pm2 -f start index.js
+14:39:23  [PM2] Applying action restartProcessId on app [index](ids: [ 0, 1, 2 ])
+14:39:23  [PM2] [index](1) ✓
+14:39:23  [PM2] [index](2) ✓
+14:39:23  [PM2] [index](0) ✓
+14:39:23  [PM2] Process successfully started
+14:39:23  ┌─────┬──────────┬─────────────┬─────────┬─────────┬──────────┬────────┬──────┬───────────┬──────────┬──────────┬──────────┬──────────┐
+14:39:23  │ id  │ name     │ namespace   │ version │ mode    │ pid      │ uptime │ ↺    │ status    │ cpu      │ mem      │ user     │ watching │
+14:39:23  ├─────┼──────────┼─────────────┼─────────┼─────────┼──────────┼────────┼──────┼───────────┼──────────┼──────────┼──────────┼──────────┤
+14:39:23  │ 0   │ index    │ default     │ 0.0.1   │ fork    │ 47518    │ 0s     │ 19   │ online    │ 0%       │ 24.6mb   │ root     │ disabled │
+14:39:23  │ 1   │ index    │ default     │ 0.0.1   │ fork    │ 47496    │ 0s     │ 61   │ online    │ 0%       │ 35.2mb   │ root     │ disabled │
+14:39:23  │ 2   │ index    │ default     │ 0.0.1   │ fork    │ 47503    │ 0s     │ 30   │ online    │ 0%       │ 34.9mb   │ root     │ disabled │
+14:39:23  └─────┴──────────┴─────────────┴─────────┴─────────┴──────────┴────────┴──────┴───────────┴──────────┴──────────┴──────────┴──────────┘
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Show url)
+[Pipeline] echo
+14:39:23  Url of app is:
+[Pipeline] echo
+14:39:23  http://192.168.56.11:3000
+[Pipeline] echo
+14:39:23  http://192.168.56.10:8080/job/node_app_deploy/24/
+[Pipeline] echo
+14:39:23  http://192.168.56.10:8080/job/node_app_deploy/
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] }
+[Pipeline] // timestamps
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // node
+[Pipeline] End of Pipeline
+Finished: SUCCESS
